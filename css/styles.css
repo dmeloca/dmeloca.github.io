@@ -1,0 +1,58 @@
+/** General Css **/
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font: 200 15px/1.5 "Barlow", sans-serif;
+    background-color: #f0f0f0;
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
+/** Css for ids and tables **/
+h2 {
+    font-family: "Roboto Mono", monospace;
+}
+h1 {
+    font-family: "Roboto Mono", monospace;
+    font-size: 40px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+h3 {
+    font-family: "Roboto Mono", monospace;
+    font-size: 30px;
+}
+
+div{
+    padding-top: 50px;
+    padding-bottom: 50px;   
+}
+
+#tittle{
+    padding-bottom: 21px;
+}
+
+#version {
+    text-align: right;
+    font-size: 17px;
+}
+
+#about {
+    background-image: url('../images/mountain-image.jpg'); /* The image used */
+    background-size: cover; /* Adjust to fit */
+    background-position: left; /* Aligns the image to the left */
+    height: 100vh; /* Full height of the viewport */
+    padding-left: 20px; /* Space for content */
+}
+#footer{
+    color: white;
+    padding-left: 20px;
+    background-color: #000000;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+
+
