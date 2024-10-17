@@ -84,7 +84,8 @@ img {
 /* Projects */
 .projects {
     display: grid;
-    grid-template-columns: repeat(2, 1fr)
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 50px;
 }
 
 .project h4 {
@@ -114,6 +115,9 @@ img {
 .project {
     justify-content: center;
     margin: 10px;
+}
+.project img {
+    margin-bottom: 50px;
 }
 #proj1 {
     grid-column: 1 / 2;
@@ -150,7 +154,9 @@ img {
     color: #646464;
     margin: 10px;
 }
-
+#post-image {
+    margin-bottom: 50px;
+}
 /* Contact/ footer*/
 #social {
     display: flex;
