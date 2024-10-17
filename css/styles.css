@@ -121,7 +121,35 @@ img {
 }
 
 /* Posts */
-
+/* Posts links style */
+.posts a {
+    text-decoration: none;
+    color: black;
+}
+.posts a:hover {
+    color: #b069db;
+}
+.posts h4 {
+    font-size: 20px;
+    margin: 5px;
+}
+.posts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+}
+.post {
+    text-align: center;
+    border: 5px solid #c2c2c2;
+    border-radius: 10px;
+    margin: 5px;
+}
+.post p {
+    text-align: center;
+    font-family: "JetBrains Mono", monospace;
+    color: #646464;
+    margin: 10px;
+}
 
 /* Contact/ footer*/
 #social {
