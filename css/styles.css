@@ -34,11 +34,26 @@ i {
     font-size: 20px;
 }
 
+i:hover {
+    color: #b069db;
+}
+
 li {
     list-style-type: none;
     float: left;
     margin: 5px;
 }
+
+a:any-link {
+    color: white;
+}
+a:-webkit-any-link {
+    color: white;
+}
+a:-moz-any-link {
+    color: white;
+}
+
 
 .footer {
     background-color: #000000;
