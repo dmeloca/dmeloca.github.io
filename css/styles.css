@@ -89,28 +89,4 @@ img {
     height: auto;
 }
 
-#about {
-    display: flex; /* Usar flexbox */
-    align-items: flex-end; /* Alinear el contenido en la parte inferior */
-    margin-bottom: 20px; /* Ajuste de margen */
-}
 
-#about img {
-    max-width: 50%; /* Ajusta el tamaño de la imagen si es necesario */
-    height: auto;
-    margin-right: 0px; /* Espacio entre la imagen y el texto */
-}
-#about h3 {
-    font-size: 20px; 
-}
-#about p {
-    padding: 0px 20px 0px 10px; /* Ajuste de margen */
-    font-size: 12px;
-}
-#breaker {
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-#projects {
-    text-align: center;
-}
