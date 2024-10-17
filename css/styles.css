@@ -30,7 +30,25 @@ div{
     padding-bottom: 50px;   
 }
 
-#tittle{
+i {
+    font-size: 20px;
+}
+
+li{
+    list-style-type: none;
+    float: left;
+    margin: 5px;
+}
+.footer {
+    background-color: #000000;
+    color: white;
+    padding: 10px;
+}
+#social {
+    padding: 10px 50px 20px 50px;
+}
+
+#tittle {
     padding-bottom: 21px;
 }
 
@@ -41,11 +59,9 @@ div{
 
 
 #footer{
+    padding: 0px;
     color: white;
-    padding-left: 20px;
     background-color: #000000;
-    padding-top: 10px;
-    padding-bottom: 5px;
 }
 
 
