@@ -40,7 +40,7 @@ div{
 }
 
 #about {
-    background-image: url('../images/mountain-image.jpg'); /* The image used */
+    background-image: url('../img/mountain-image.jpg'); /* The image used */
     background-size: cover; /* Adjust to fit */
     background-position: left; /* Aligns the image to the left */
     height: 100vh; /* Full height of the viewport */
