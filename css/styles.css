@@ -92,3 +92,10 @@ img {
     padding: 0px 20px 0px 10px; /* Ajuste de margen */
     font-size: 12px;
 }
+#breaker {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+#projects {
+    text-align: center;
+}
