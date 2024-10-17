@@ -25,7 +25,7 @@ h3 {
     font-size: 30px;
 }
 
-div{
+div {
     padding-top: 50px;
     padding-bottom: 50px;   
 }
@@ -34,21 +34,27 @@ i {
     font-size: 20px;
 }
 
-li{
+li {
     list-style-type: none;
     float: left;
     margin: 5px;
 }
+
 .footer {
     background-color: #000000;
     color: white;
-    padding: 10px;
-}
-#social {
-    padding: 10px 50px 20px 50px;
+    padding: 5px;
+    text-align: center; /* Añadido para centrar el texto */
 }
 
-#tittle {
+#social {
+    display: flex;
+    justify-content: center; /* Cambiado para centrar los íconos */
+    align-items: center;
+    padding: 0px 0; /* Ajuste de padding */
+}
+
+#title {  /* Corregido de #tittle a #title */
     padding-bottom: 21px;
 }
 
@@ -57,12 +63,15 @@ li{
     font-size: 17px;
 }
 
-
-#footer{
+#footer {
     padding: 0px;
     color: white;
     background-color: #000000;
 }
 
+img {
+    max-width: 100%;  /* Para que las imágenes no se desborden */
+    height: auto;
+}
 
 
