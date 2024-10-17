@@ -39,13 +39,7 @@ div{
     font-size: 17px;
 }
 
-#about {
-    background-image: url('../img/mountain-image.jpg'); /* The image used */
-    background-size: cover; /* Adjust to fit */
-    background-position: left; /* Aligns the image to the left */
-    height: 100vh; /* Full height of the viewport */
-    padding-left: 20px; /* Space for content */
-}
+
 #footer{
     color: white;
     padding-left: 20px;
