@@ -1,36 +1,16 @@
-/** General Css **/
-* {
-    margin: 0;
-    padding: 0;
-}
-body {
-    font: 200 15px/1.5 "Barlow", sans-serif;
-    background-color: #f0f0f0;
-    padding-left: 200px;
-    padding-right: 200px;
+
+/* Contact/ footer*/
+#social {
+    display: flex;
+    justify-content: center; /* Cambiado para centrar los íconos */
+    align-items: center;
 }
 
 
-/** Css for ids and tables **/
-h2 {
-    font-family: "Roboto Mono", monospace;
+footer {
+    background-color: #000000;
+    color: white;
 }
-h1 {
-    font-family: "Roboto Mono", monospace;
-    font-size: 40px;
-    padding-bottom: 30px;
-    padding-top: 30px;
-}
-h3 {
-    font-family: "Roboto Mono", monospace;
-    font-size: 30px;
-}
-
-section {
-    padding-top: 50px;
-    padding-bottom: 50px;   
-}
-
 i {
     font-size: 20px;
 }
@@ -55,120 +35,24 @@ a:-moz-any-link {
     color: white;
 }
 
-img {
-    max-width: 100%;  
+h1 {
+    font-family: "Roboto Mono", monospace;
+    font-size: 40px;
 }
-
-/* Title */
-#title {  
-    padding-bottom: 21px;
+h2 {
+    font-family: "Roboto Mono", monospace;
+    font-size: 30px;
 }
-
-#version {
-    text-align: right;
-    font-size: 17px;
-}
-
-
-/* About */
-.about {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-}
-.about img {
-    width: 50%;
-}
-
-/* Projects */
-.projects {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 50px;
-}
-
-.project h4 {
-    border-bottom: 1px solid #c2c2c2;
-    text-align: center;
+h3 {
+    font-family: "Roboto Mono", monospace;
     font-size: 20px;
-    padding-top: 5px;
-    padding-bottom: 5px;
 }
-.project li {
-    list-style-type: none;
-    margin: 5px;
-    text-align: left;
-    float: left;
-    width: fit-content;
-    font-family: "JetBrains Mono", monospace;
-    color: #828282;
+body {
+    font: 200 15px/1.5 "Barlow", sans-serif;
 }
-
-.project a{
-    text-decoration: none;
-    color: black;
+.post{
+    font-size: 15px;
 }
-.project a:hover {
-    color: #b069db;
-}
-.project {
-    justify-content: center;
-    margin: 10px;
-}
-.project img {
-    margin-bottom: 50px;
-}
-#proj1 {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-}
-
-/* Posts */
-/* Posts links style */
-.posts a {
-    text-decoration: none;
-    color: black;
-}
-.posts a:hover {
-    color: #b069db;
-}
-.posts h4 {
-    font-size: 20px;
-    margin: 5px;
-}
-.posts {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 10px;
-}
-.post {
-    text-align: center;
-    border: 5px solid #c2c2c2;
-    border-radius: 10px;
-    margin: 5px;
-}
-.post p {
-    text-align: center;
-    font-family: "JetBrains Mono", monospace;
-    color: #646464;
-    margin: 10px;
-}
-#post-image {
-    margin-bottom: 50px;
-}
-/* Contact/ footer*/
-#social {
-    display: flex;
-    justify-content: center; /* Cambiado para centrar los íconos */
-    align-items: center;
-    padding: 0px 0; /* Ajuste de padding */
-}
-
-
-footer {
-    background-color: #000000;
-    color: white;
-    padding: 5px;
-    text-align: center; /* Añadido para centrar el texto */
+.name{
+    font-weight: 300;
 }
