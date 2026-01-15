@@ -1,103 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Ch1p's Blog</title>
+<style>
+	@media (prefers-color-scheme: dark){
+		body {
+			background:#000
+		}
+	}
+	body{
+		margin:1em auto;
+		max-width:40em;
+		padding:0 .62em 3.24em;
+		font:1.2em/1.62 sans-serif
+	}
+	h1,h2,h3 {
+		line-height:1.2
+	}
+	@media print{
+		body{
+			max-width:none
+		}
+	}
+</style>
+<article>
+	<header>
+		<h1>Ch1p's Blog</h1>
+		<aside>Just suckless.</aside>
+	</header>
+	<h2>Writeups</h2>
+		<ul>
+			<li><a href="writeups/low_logic/low_logic.html">Low Logic</a> - Hardware - HTB</li>
+			<li><a href="writeups/the_needle/the_needle.html">The Needle</a> - Hardware - HTB</li>
+			<li><a href="writeups/spooky_pass/spooky_pass.html">Spooky Pass</a> - Reversing - HTB</li>
+		</ul>
+	<h2>Blog</h2>
+	<h2>Courses</h2>
+	<h2>Others</h2>
+</article>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500&family=Roboto+Mono:wght@600&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@1,300&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/styles.css">
-    <link rel="icon" href="./img/folder.ico" type="image/x-icon">
-    <title>Portfolio</title>
-</head>
-<body>
-    <header class="container-md mb-5">
-        <h1 class="mb-4 mt-3">Daniel Melo's Portfolio</h1>
-        <img class="img-fluid object-fit-cover" src="./img/forest-image.jpg" alt="foto">
-        <p class="text-end">vol. 02</p>
-    </header>
-    <main class="container-md">
-        
-        <!-- About Me -->
-        <section class="container-sm mb-5">
-            <div class="row">
-                <!-- Columna de texto con margen ajustado para dispositivos pequeños -->
-                <div class="col-md mt-lg-5 mt-sm-0 mb-sm-3">
-                    <p class="text-md-center text-center pr-4">
-                    I am passionate about computer science and mathematics, so I am currently pursuing an undergraduate degree in Computer Science and aspiring to start a double degree in Mathematics at the National University of Colombia. I love to learn, explore and develop diverse skills, and I consider myself a persistent person, committed to doing high quality work. I enjoy challenges and always look for innovative solutions to problems, in addition to testing myself in different scenarios that allow me to continue growing and learning.
-                    </p>
-                    <div class="text-center mt-3">
-                        <a href="https://dmeloca.github.io/Root-Write/" class="btn btn-primary">Visit My Blog</a>
-                    </div>
-                </div>
-        
-                <!-- Columna de imagen -->
-                <div class="col-md px-0">
-                    <img class="img-fluid object-fit-cover w-100 d-block" src="./img/mountain-image.jpg" alt="foto">
-                </div>
-            </div> 
-        </section>        
-        
-        <!-- Divider -->
-        <section class=" container-md px-0 mb-5">
-            <img class="img-fluid object-fit-cover" src="./img/breaker.jpg">
-        </section>
-
-        <!-- Projects -->
-        <section class="mb-5">
-            <div class="row">
-                <div class="col-sm">
-                    <!-- Remember image size: 3560x2184-->
-                    <div class="card">
-                        <img src="./img/mountains.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h4 class="card-title">PSO - Implementation</h5>
-                            <p class="card-text">PSO Algorithm</p>
-                            <a href="https://github.com/dmeloca/PSO-Implementation" class="btn btn-secondary" target="_blank">Repo</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm">
-                    <div class="card">
-                        <img src="./img/foggy.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h4 class="card-title">VNAI mentorship</h5>
-                            <p class="card-text">Some problems to investigate about CS</p>
-                            <a href="https://github.com/dmeloca/VNAIMentorship_Program" class="btn btn-secondary" target="_blank">Repo</a>
-                        </div>
-                    </div>
-                </div>
-            </div>    
-        </section>
-        
-        <!-- Divider -->
-        <section class="container-md px-0 mb-5">
-            <img class="img-fluid object-fit-cover" src="./img/foggy-forest.jpg">
-        </section>
-        
-        <!-- Posts -->
-        <!-- ToDO: Posts sections--> 
-
-    </main> 
-    <footer>
-        <ul id="social" class="py-2 mb-0">
-            <li id="git"><a href="https://github.com/dmeloca" target="_blank"><i class="fa-brands fa-github"></i></a></li>
-            <li id="linkedin"><a href="https://www.linkedin.com/in/daniel-melo-09aa82325/" target="_blank"><i class="fa-brands fa-linkedin"></i></a></li>
-            <li id="separator">|</li>
-            <li id="quote">
-                <p class="text-center mb-0">One should never try to prove anything that is not almost obvious / <strong>Alexander Grothendieck</strong></p>
-            </li>
-        </ul>
-    </footer>
-    <script src="./js/app.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/1a3f8fefe0.js" crossorigin="anonymous"></script> 
-</body>
-
-</html>

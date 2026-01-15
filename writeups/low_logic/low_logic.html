@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Ch1p's Blog</title>
+<style>
+	@media (prefers-color-scheme: dark){
+		body {
+			background:#000
+		}
+	}
+	body{
+		margin:1em auto;
+		max-width:40em;
+		padding:0 .62em 3.24em;
+		font:1.2em/1.62 sans-serif
+	}
+	h1,h2,h3 {
+		line-height:1.2
+	}
+	@media print{
+		body{
+			max-width:none
+		}
+	}
+	img {
+  		display: block;
+  		margin: 1em auto;
+	}
+</style>
+<article>
+	<h1 id="low-logic">Low Logic</h1>
+<p>Created: July 31, 2025 9:42 AM Difficulty: Very Easy Category:
+hardware</p>
+<p>Analyzing the challenge Docs we get circuit diagram and a csv with
+what it looks is the input of the circuit.</p>
+<figure>
+<img src="../../images/low_logic/image_1.png" alt="image.png" width="640"/>
+</figure>
+<p>Here we have transistors and resistances, if we look closely we can
+discover that this exactly assembly of resistances and transistors let
+us make logic gates in this case we get one <code>or</code> gate and two
+<code>and</code> gates which makes the following logic diagram</p>
+<figure>
+<img src="../../images/low_logic/image_2.png" alt="image.png" width="640"/>
+</figure>
+<p>Then to solve this challenge we need to write a script (in this case
+written on python) to model the gates flow by getting the inputs located
+on the <code>csv</code> , so the script could look like this</p>
+<pre class="python"><code>def open_file(url: str) -&gt; list[str]:
+    with open(url) as f:
+        buffer = f.read()
+    return buffer.split(&#39;\n&#39;)[1:-1]
+
+def operations(entry: str) -&gt; None:
+    bits: int = [int(i) for i in entry.split(&#39;,&#39;)]
+    return (bits[0] and bits[1]) or (bits[2] and bits[3])
+    
+
+if __name__ == &quot;__main__&quot;:
+    bits = [operations(i) for i in open_file(&#39;input.csv&#39;)]
+    bit_string = &#39;&#39;.join(str(b) for b in bits)
+    chars = &#39;&#39;.join([chr(int(bit_string[i:i+8], 2)) for i in range(0, len(bit_string), 8)])
+    print(chars) </code></pre>
+<p>This simple script in the <code>open_file</code> function opens the
+csv file saves the input on a list by splitting it by test cases (here
+we use the <code>\n</code> char) and removing the first and the last
+item. In other hand, <code>operations</code> get the entry by each test
+case and operate each bit. Lastly, the code just convert from bytes to
+string, revealing our flag.</p>
+	<p><a href='/'>Home</a></p>
+</article>
