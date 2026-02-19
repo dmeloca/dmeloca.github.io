@@ -1,0 +1,37 @@
+bandit 0
+--> bandit0:bandit0
+
+bandit0 -> bandit1
+    In this level there is only one file (where the password is located).
+    command: `cat readme`
+    flag: ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
+bandit1 -> bandit2
+    At this level we encounter a file with an special character.
+    command: `cat ./-`
+    explanation: As we know the `.` means the actual directory, so we are giving
+    a relative path to the "dashed" file.
+    flag: 263JGJPfgU6LtdEvgfWU1XP5yac29mFx
+bandit2 -> bandit 3
+    The file we want to explore has special characters and spaces.
+    command: `cat ./--spaces\ in\ this\ filename--`
+    explanation: In this case we use the trick of the level above and we use \ 
+    to escape the spaces.
+    flag: MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
+bandit3 -> bandit4
+    This level consists on knowing how to manage hidden files, as general knowledge
+    hidden files on linux are saved as `.<name>`.
+    command: `cat ./...Hiding-From-You`
+    explanation: we can find the file by doing `ls -la` which list all files, including
+    hidden ones.
+    flag: 2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
+bandit4 -> bandit5
+    We need to filter by the file type, in order to search for a human readable
+    file in a folder.
+    command: `file ./-*`
+    explanation: with file we get the type of each file in the folder, using 
+    tricks of levels above and if you want to go beyond you can use grep to search
+    for the word `text`.
+    flag: 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
+bandit5 -> bandit6
+
+
