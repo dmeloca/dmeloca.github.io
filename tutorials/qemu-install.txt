@@ -1,0 +1,19 @@
+Arch qemu-full installation 
+===========================
+Note: This installation don't include virtmanager
+
+1. Install qemu-full
+    - `sudo pacman -S qemu-full`
+1.1. Verify the installation
+    - `qemu-system-x86_64 --version`
+2. Check that your cpu supports virtualization 
+    - `lscpu | grep virtualization`
+3. Load kernel modules
+    - `sudo modprobe kvm`
+    - `sudo modprobe kvm_{intel, amd}` => depends on your system
+4. make it permanent
+    - `lsmod | grep kvm`
+
+5. Add your user to kvm (required to not use sudo always)
+    - `sudo usermod -aG kvm $USER`
+
