@@ -54,3 +54,11 @@ Comment
     - `systemctl --user start pipewire pipewire-pulse wireplumber`
     - `reboot`
     - `pactl info`
+
+- Using Bluetooth
+    - `sudo pacman -S bluez bluez-utils`
+    - `sudo systemctl enable/start bluetooth.service`
+    - `systemctl status bluetooth`
+    - `bluetoothctl list `
+    - `sudo pacman -S bluetui` --> Tui management
+
