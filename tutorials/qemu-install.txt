@@ -17,3 +17,12 @@ Note: This installation don't include virtmanager
 5. Add your user to kvm (required to not use sudo always)
     - `sudo usermod -aG kvm $USER`
 
+
+--------------------------
+        APENDIX
+--------------------------
+
+Mounting the folder
+1. Inside the VM `echo "hostshare  /mnt/shared  9p  trans=virtio,version=9p2000.L,rw,_netdev  0  0" | sudo tee -a /etc/fstab`
+2. sudo mkdir -p /mnt/shared
+3. sudo mount -a
