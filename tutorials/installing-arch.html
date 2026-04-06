@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Ch1p's Blog</title>
+<style>
+	@media (prefers-color-scheme: dark){
+		body {
+			background:#000
+		}
+	}
+	body{
+		margin:1em auto;
+		max-width:40em;
+		padding:0 .62em 3.24em;
+		font:1.2em/1.62 sans-serif
+	}
+	h1,h2,h3 {
+		line-height:1.2
+	}
+	@media print{
+		body{
+			max-width:none
+		}
+	}
+	img {
+  		display: block;
+  		margin: 1em auto;
+	}
+	.sourceCode pre {
+    		white-space: pre-wrap;
+    		word-break: break-word;
+	}
+</style>
+<article>
+<h1 id="quick-guide-to-install-arch-linux">Quick guide to install arch
+linux</h1>
+<p>Based on <a
+href="https://www.youtube.com/watch?v=oeDbo-HRaZo&amp;t=982s">tony,
+btw</a> video.</p>
+<ul>
+<li>Use cfdisk /dev/sd* to make a partition of your disk.</li>
+<li>Formatting disk partitions
+<ul>
+<li>mkfs.ext4 /dev/root_partition</li>
+<li>mkswap /dev/swap_partition</li>
+<li>mkfs.fat -F 32 /dev/efi_system_partition</li>
+</ul></li>
+<li>Mounting the file systems
+<ul>
+<li>mount /dev/root_partition /mnt/</li>
+<li>mount –mkdir /dev/efi_system_partition /mnt/boot/efi</li>
+<li>swapon /dev/swap_partition</li>
+</ul></li>
+<li>Installing essential packages
+<ul>
+<li>pacstrap /mnt base linux linux-firmware sof-firmware base-devel grub
+efibootmgr networkmanager vim</li>
+</ul></li>
+<li>Generating fstab file
+<ul>
+<li>genfstab /mnt &gt;&gt; /mnt/etc/fstab</li>
+</ul></li>
+<li>Chrooting to the filesystem
+<ul>
+<li>arch-chroot /mnt</li>
+</ul></li>
+<li>Setting time
+<ul>
+<li>ln -sf /usr/share/zoneinfo/Area/Location /etc/localtime</li>
+<li>hwclock –systohc</li>
+</ul></li>
+<li>Localization
+<ul>
+<li>edit /etc/locale.gen by uncommenting en_US.UTF-8</li>
+<li>echo ‘LANG=en_US.UTF-8’ &gt;&gt; /etc/locale.conf</li>
+</ul></li>
+<li>Network Config
+<ul>
+<li>echo “<your-hostname>” &gt;&gt; /etc/hostname</li>
+</ul></li>
+<li>Configuring Users
+<ul>
+<li>Create the root password with <code>passwd</code></li>
+<li>Create a user with
+<code>useradd -m -G wheel -s /bin/bash &lt;user-name&gt;</code></li>
+<li>Create a password for user with
+<code>passwd &lt;user-name&gt;</code></li>
+</ul></li>
+<li>Configure sudo
+<ul>
+<li><code>EDITOR=vim visudo</code></li>
+<li>In vim search for %wheel ALL=(ALL:ALL) ALL</li>
+<li>Un-comment the line, and save the file</li>
+</ul></li>
+<li>Enabling core-sytems utilites
+<ul>
+<li>NetworkManager</li>
+<li><code>systemctl enable NetworkManager</code></li>
+<li>For others check the comments</li>
+</ul></li>
+<li>Setup Boot loader
+<ul>
+<li>grub-install /dev/<disk></li>
+<li>grub-mkconfig -o /boot/grub/grub.cfg</li>
+</ul></li>
+<li>Exit..
+<ul>
+<li><code>exit</code> =&gt; to exit from chroot</li>
+<li><code>umount -R /mnt</code></li>
+<li><code>reboot</code></li>
+</ul></li>
+</ul>
+<h1 id="comment">Comment</h1>
+<ul>
+<li>Installing Pipewire
+<ul>
+<li><code>sudo pacman -S pipewire pipewire-audio pipewire-alsa pipewire-pulse pipewire-jack wireplumber</code></li>
+<li><code>systemctl --user enable pipewire pipewire-pulse wireplumber</code></li>
+<li><code>systemctl --user start pipewire pipewire-pulse wireplumber</code></li>
+<li><code>reboot</code></li>
+<li><code>pactl info</code></li>
+</ul></li>
+<li>Using Bluetooth
+<ul>
+<li><code>sudo pacman -S bluez bluez-utils</code></li>
+<li><code>sudo systemctl enable/start bluetooth.service</code></li>
+<li><code>systemctl status bluetooth</code></li>
+<li><code>bluetoothctl list</code></li>
+<li><code>sudo pacman -S bluetui</code> –&gt; Tui management</li>
+</ul></li>
+</ul>
+<p><a href='/'>Home</a></p>
+</article>

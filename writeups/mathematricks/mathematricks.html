@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Ch1p's Blog</title>
+<style>
+	@media (prefers-color-scheme: dark){
+		body {
+			background:#000
+		}
+	}
+	body{
+		margin:1em auto;
+		max-width:40em;
+		padding:0 .62em 3.24em;
+		font:1.2em/1.62 sans-serif
+	}
+	h1,h2,h3 {
+		line-height:1.2
+	}
+	@media print{
+		body{
+			max-width:none
+		}
+	}
+	img {
+  		display: block;
+  		margin: 1em auto;
+	}
+	.sourceCode pre {
+    		white-space: pre-wrap;
+    		word-break: break-word;
+	}
+</style>
+<article>
+<h1 id="mathematricks">Mathematricks</h1>
+<p>Avoiding the basic arithmetic questions, the most relevant part of
+the challenge lies in solving the final task, which requires providing
+two positive integers whose sum results in a negative value. This
+behavior indicates the presence of an integer overflow.</p>
+<p>To achieve this, it is necessary to determine the data type used by
+the program to store user input. Since only the compiled binary is
+provided, the program must be reverse-engineered through decompilation.
+The resulting pseudocode reveals that the input values are stored in
+variables of type long.</p>
+<p>Given this, the next step is to identify the maximum representable
+value for this data type. As the function <code>read_num()</code> reads
+31 character we asssume 32-bit signed representation, with maximum value
+is 2,147,483,647 (<span class="math inline">2<sup>31</sup> − 1</span>).
+By supplying this value along with 1, their sum exceeds the
+representable range and causes an integer overflow, resulting in a
+negative value due to wrap-around behavior in two’s complement
+arithmetic.</p>
+<p>If you have the couriosity of how this challenges works:</p>
+<p>An integer overflow happens when a number gets too big (or too small)
+for the space the computer reserved to store it. Computers don’t have
+infinite room for numbers. They use a fixed number of bits, like 8, 16,
+32, or 64 bits. That means there’s a hard limit.</p>
+<p>With a fixed number of bits, there are only so many combinations
+possible.</p>
+<p>For 8 bits:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode txt"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>11111111 = 255</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>+       1</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>---------</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>100000000  (9 bits)</span></code></pre></div>
+<p>The extra bit gets dropped, leaving:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode txt"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>00000000 = 0</span></code></pre></div>
+<p>If the number can be negative, things use a format called two’s
+complement.</p>
+<p>Example: a signed 8-bit integer ranges from -128 to 127.</p>
+<p>Now:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode txt"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>127 + 1 = -128</span></code></pre></div>
+<p>Because the binary flips in a way that wraps into the negative
+range.</p>
+<p><a href='/'>Home</a></p>
+</article>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Ch1p's Blog</title>
+<style>
+	@media (prefers-color-scheme: dark){
+		body {
+			background:#000
+		}
+	}
+	body{
+		margin:1em auto;
+		max-width:40em;
+		padding:0 .62em 3.24em;
+		font:1.2em/1.62 sans-serif
+	}
+	h1,h2,h3 {
+		line-height:1.2
+	}
+	@media print{
+		body{
+			max-width:none
+		}
+	}
+	img {
+  		display: block;
+  		margin: 1em auto;
+	}
+	.sourceCode pre {
+    		white-space: pre-wrap;
+    		word-break: break-word;
+	}
+</style>
+<article>
+<h1 id="arch-qemu-full-installation">Arch qemu-full installation</h1>
+<p>Note: This installation don’t include virtmanager</p>
+<ol type="1">
+<li>Install qemu-full
+<ul>
+<li><code>sudo pacman -S qemu-full</code></li>
+<li><code>qemu-system-x86_64 --version</code> -&gt; to verify
+installation</li>
+</ul></li>
+<li>Check that your cpu supports virtualization
+<ul>
+<li><code>lscpu | grep virtualization</code></li>
+</ul></li>
+<li>Load kernel modules
+<ul>
+<li><code>sudo modprobe kvm</code></li>
+<li><code>sudo modprobe kvm_{intel, amd}</code> =&gt; depends on your
+system</li>
+</ul></li>
+<li>make it permanent
+<ul>
+<li><code>lsmod | grep kvm</code></li>
+</ul></li>
+<li>Add your user to kvm (required to not use sudo always)
+<ul>
+<li><code>sudo usermod -aG kvm $USER</code></li>
+</ul></li>
+</ol>
+<table>
+<tbody>
+<tr>
+<td style="text-align: center;">APENDIX</td>
+</tr>
+</tbody>
+</table>
+<p>Mounting the folder 1. Inside the VM
+<code>echo "hostshare  /mnt/shared  9p  trans=virtio,version=9p2000.L,rw,_netdev  0  0" | sudo tee -a /etc/fstab</code>
+2. sudo mkdir -p /mnt/shared 3. sudo mount -a</p>
+<p><a href='/'>Home</a></p>
+</article>
