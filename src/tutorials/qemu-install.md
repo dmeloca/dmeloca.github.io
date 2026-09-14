@@ -1,0 +1,27 @@
+# Arch qemu-full installation 
+
+Note: This installation don't include virtmanager
+
+1. Install qemu-full
+    - `sudo pacman -S qemu-full`
+    - `qemu-system-x86_64 --version` -> to verify installation
+2. Check that your cpu supports virtualization 
+    - `lscpu | grep virtualization`
+3. Load kernel modules
+    - `sudo modprobe kvm`
+    - `sudo modprobe kvm_{intel, amd}` => depends on your system
+4. make it permanent
+    - `lsmod | grep kvm`
+
+5. Add your user to kvm (required to not use sudo always)
+    - `sudo usermod -aG kvm $USER`
+
+
+--------------------------
+        APENDIX
+--------------------------
+
+Mounting the folder
+1. Inside the VM `echo "hostshare  /mnt/shared  9p  trans=virtio,version=9p2000.L,rw,_netdev  0  0" | sudo tee -a /etc/fstab`
+2. sudo mkdir -p /mnt/shared
+3. sudo mount -a

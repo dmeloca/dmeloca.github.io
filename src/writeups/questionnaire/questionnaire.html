@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Ch1p's Blog</title>
+<style>
+	@media (prefers-color-scheme: dark){
+		body {
+			background:#000
+		}
+	}
+	body{
+		margin:1em auto;
+		max-width:40em;
+		padding:0 .62em 3.24em;
+		font:1.2em/1.62 sans-serif
+	}
+	h1,h2,h3 {
+		line-height:1.2
+	}
+	@media print{
+		body{
+			max-width:none
+		}
+	}
+	img {
+  		display: block;
+  		margin: 1em auto;
+	}
+	.sourceCode pre {
+    		white-space: pre-wrap;
+    		word-break: break-word;
+	}
+</style>
+<article>
+<h1 id="questionnaire">Questionnaire</h1>
+<p>For this challenge, we are given <code>test.c</code> and a compiled
+executable <code>test</code>. On the other hand, we also have the
+endpoint provided by HTB.</p>
+<p>If we connect to the given IP via netcat or similar software, we are
+prompted to answer a series of questions.</p>
+<hr />
+<p><strong>0x1. Is this a ‘32-bit’ or ‘64-bit’ ELF?</strong></p>
+<ul>
+<li>To answer this, we use the <code>file</code> command (it is
+recommended to check the man page for this command).</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">test:</span> ELF 64-bit LSB executable, x86-64, version 1 <span class="er">(</span><span class="ex">SYSV</span><span class="kw">)</span><span class="ex">,</span> dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID<span class="pp">[</span><span class="ss">sha1</span><span class="pp">]</span>=5a83587fbda6ad7b1aeee2d59f027a882bf2a429, for GNU/Linux 3.2.0, not stripped</span></code></pre></div>
+<ul>
+<li>As you can see, this command reveals the answer.</li>
+</ul>
+<hr />
+<p><strong>0x2. What’s the linking of the binary?</strong></p>
+<ul>
+<li>Again, the <code>file</code> command helps us answer this
+question.</li>
+<li><strong>Answer:</strong> <code>dynamic</code></li>
+</ul>
+<hr />
+<p><strong>0x3. Is the binary ‘stripped’ or ‘not stripped’?</strong></p>
+<ul>
+<li><strong>Answer:</strong> <code>not stripped</code> (based on the
+output of <code>file</code>)</li>
+</ul>
+<hr />
+<p><strong>0x4. Which protections are enabled (Canary, NX, PIE,
+Fortify)?</strong></p>
+<ul>
+<li>Here we introduce another tool called <code>checksec</code>. This
+can be installed via the pwntools Python library and provides more
+information about the binary.</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[*]</span> <span class="st">&#39;/HTB/challenges/pwn/pwn_questionnaire/test&#39;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Arch:</span>       amd64-64-little</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">RELRO:</span>      Partial RELRO</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Stack:</span>      No canary found</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">NX:</span>         NX enabled</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">PIE:</span>        No PIE <span class="er">(</span><span class="ex">0x400000</span><span class="kw">)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">SHSTK:</span>      Enabled</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">IBT:</span>        Enabled</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Stripped:</span>   No</span></code></pre></div>
+<ul>
+<li>The <code>checksec</code> command analyzes the binary and identifies
+known protections.</li>
+<li>In this case, the correct answer is
+<strong><code>NX</code></strong>, as it is the only listed protection
+among the given options.</li>
+</ul>
+<hr />
+<p><strong>0x5. What is the name of the custom function that gets called
+inside <code>main()</code>? (e.g. vulnerable_function())</strong></p>
+<ul>
+<li>Fortunately, the challenge provides the original C source code,
+making analysis easier.</li>
+<li>By inspecting <code>test.c</code>:</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> main<span class="op">(){</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    vuln<span class="op">();</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<ul>
+<li>The function called inside <code>main()</code> is
+<code>vuln()</code>.</li>
+</ul>
+<hr />
+<p><strong>0x6. What is the size of the ‘buffer’ (in hex or
+decimal)?</strong></p>
+<ul>
+<li>By reading the code, we find:</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> buffer<span class="op">[</span><span class="bn">0x20</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="dv">0</span><span class="op">};</span></span></code></pre></div>
+<ul>
+<li><strong>Answer:</strong> <code>0x20</code></li>
+</ul>
+<hr />
+<p><strong>0x7. Which custom function is never called?
+(e.g. vuln())</strong></p>
+<ul>
+<li>By analyzing the program logic, we see that the function
+<code>gg()</code> is never called during normal execution.</li>
+</ul>
+<hr />
+<p><strong>0x8. What is the name of the standard function that could
+trigger a Buffer Overflow? (e.g. fprintf())</strong></p>
+<ul>
+<li>Check the documentation using <code>man fgets</code>.</li>
+<li>The buffer size is <code>0x20</code>, but <code>fgets</code> reads
+up to <code>0x100</code> bytes.</li>
+<li>This mismatch creates a buffer overflow vulnerability.</li>
+<li><strong>Answer:</strong> <code>fgets()</code></li>
+</ul>
+<hr />
+<p><strong>0x9. After how many bytes does a Segmentation Fault occur (in
+hex or decimal)?</strong></p>
+<ul>
+<li>We can test this using:</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">printf</span> <span class="st">&#39;A%.0s&#39;</span> {1..n} <span class="kw">|</span> <span class="ex">./test</span></span></code></pre></div>
+<ul>
+<li>By increasing <code>n</code>, we determine when the program
+crashes.</li>
+<li><strong>Answer:</strong> <code>40</code></li>
+</ul>
+<hr />
+<p><strong>0xa. What is the address of <code>gg()</code> in hex?
+(e.g. 0x401337)</strong></p>
+<ul>
+<li>We use <code>gdb</code> to inspect the binary:</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gdb</span> test</span></code></pre></div>
+<ul>
+<li>Inside <code>gdb</code>, run:</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">info</span> functions</span></code></pre></div>
+<ul>
+<li>This lists all functions along with their addresses.</li>
+<li>Since the output is in 64-bit format and the question asks for a
+32-bit-style answer, we can truncate the leading zeros.</li>
+</ul>
+<hr />
+<p>Finally, the challenge is solved.</p>
+<p><a href='/'>Home</a></p>
+</article>

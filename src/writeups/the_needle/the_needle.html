@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Ch1p's Blog</title>
+<style>
+	@media (prefers-color-scheme: dark){
+		body {
+			background:#000
+		}
+	}
+	body{
+		margin:1em auto;
+		max-width:40em;
+		padding:0 .62em 3.24em;
+		font:1.2em/1.62 sans-serif
+	}
+	h1,h2,h3 {
+		line-height:1.2
+	}
+	@media print{
+		body{
+			max-width:none
+		}
+	}
+	img {
+  		display: block;
+  		margin: 1em auto;
+	}
+</style>
+<article>
+	<h1 id="the-needle">The Needle</h1>
+<p>Created: July 31, 2025 3:38 PM Difficulty: Very Easy Category:
+hardware</p>
+<p>This challenge provides us a <code>.bin</code> file, which represents
+a Linux Kernel ARM boot executable. This file could be analyzed with
+<code>binwalk</code> getting the following output</p>
+<figure>
+<img src="../../images/the_needle/image_1.png" alt="binwalk" width="640"/>
+</figure>
+<p>Here we are interest on the <code>Squashfs</code> filesystem which
+could be extracted with <code>dd</code> and the following command</p>
+<pre class="bash"><code>dd if=firmware.bin of=filesystem.squashfs skip=538952 bs=1</code></pre>
+<p>where <code>if</code> refer to the input file, <code>of</code>
+identify the output file, the <code>skip</code> flag indicates from
+where start to extract the file and the <code>bs</code> set the reading
+bytes as 1. When this command is run we get an <code>.squashfs</code>
+file that we could analyze using <code>unsquashfs</code> command getting
+finally the filesystem.</p>
+<figure>
+<img src="../../images/the_needle/image_2.png" alt="filesystem" />
+</figure>
+<p>At this point we need to found some credentials but we need to locate
+the script dedicated for login for that we could make a recursive search
+and filtering by the word <code>login</code> , it could be</p>
+<pre class="bash"><code>grep -r . -e login</code></pre>
+<p>Analyzing the output we found the following command
+<code>telnetd -l "/usr/sbin/login" -u Device_Admin:$sign</code> which
+gave us the hint to search for the “variable” <code>sign</code> (you
+could use <code>find . -name sign</code>) getting the file where the
+password is stored.</p>
+<p>At this point we could connect to the HTB endpoint to search the
+flag.</p>
+	<p><a href='/'>Home</a></p>
+</article>
